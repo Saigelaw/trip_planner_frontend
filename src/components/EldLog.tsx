@@ -1,8 +1,8 @@
 import React from 'react';
-import type { EldLogData } from '../types';
+import type { TripLogSheet } from '../types';
 
 interface EldLogProps {
-    logSheets: EldLogData[];
+    logSheets: TripLogSheet[];
 }
 
 const EldLog: React.FC<EldLogProps> = ({ logSheets }) => {
@@ -13,22 +13,15 @@ const EldLog: React.FC<EldLogProps> = ({ logSheets }) => {
     const hours = Array.from({ length: 24 }, (_, i) => i);
     const dutyStatuses = ['Off Duty', 'Sleeper Berth', 'Driving', 'On Duty'];
 
-    // Map duty status to a relative Y position for SVG drawing
-    // These values will be relative within the SVG viewbox height for the graph area
-    const statusYMap: { [key: string]: number } = {
-        'off_duty': 12.5, // Center of the Off Duty row
-        'sleeper_berth': 37.5, // Center of the Sleeper Berth row
-        'driving': 62.5, // Center of the Driving row
-        'on_duty_not_driving': 87.5, // Center of the On Duty row
-    };
+    // ...existing code...
 
     // For each event, draw a horizontal line in the corresponding status row, centered in the row
-    const renderEventLines = (events: EldLogData['events'], statusKey: string, rowHeight: number = 50) => {
+    const renderEventLines = (events: TripLogSheet['events'], statusKey: string, rowHeight: number = 50) => {
         // Offset each event line vertically within the row to avoid overlap
-        const eventList = events.filter((event: EldLogData['events'][number]) => event.type === statusKey);
+        const eventList = events.filter((event: TripLogSheet['events'][number]) => event.type === statusKey);
         const count = eventList.length;
         // If only one event, center it; if multiple, space them evenly
-        return eventList.map((event: EldLogData['events'][number], idx: number) => {
+        return eventList.map((event: TripLogSheet['events'][number], idx: number) => {
             const start = new Date(event.start_time);
             const startHour = start.getHours() + start.getMinutes() / 60;
             const endHour = startHour + event.duration;

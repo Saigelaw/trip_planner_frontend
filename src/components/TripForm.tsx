@@ -6,6 +6,8 @@ import { useState } from 'react';
 
 interface TripFormProps {
     onTripResult: (data: TripData) => void;
+    onLoading?: () => void;
+    onError?: (message: string) => void;
 }
 
 const TripForm = ({ onTripResult }: TripFormProps) => {

@@ -1,5 +1,3 @@
-// File: src/App.tsx
-
 import { useState } from 'react';
 import TripForm from './components/TripForm';
 import Map from './components/Map';
