@@ -24,7 +24,7 @@ const TripForm = ({ onTripResult }: TripFormProps) => {
             };
 
             const response = await axios.post<TripData>(
-                'http://127.0.0.1:8000/api/trips/v1/trip_plan/',
+                'https://tripplannerbackend-production.up.railway.app/api/trips/v1/trip_plan/',
                 payload
             );
             onTripResult(response.data);
